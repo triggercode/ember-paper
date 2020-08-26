@@ -3,10 +3,11 @@
   @contentComponent="paper-menu/content"
   @calculatePosition={{this.calculatePosition}}
   @onClose={{this.close}}
-  @onOpen={{this.open}}
-  as |dd|>
-  {{yield (hash
-    trigger=dd.Trigger
-    content=dd.Content
-  )}}
+  @onOpen={{this.open}} as |dd|
+>
+  {{
+    yield
+    (hash trigger=dd.Trigger content=dd.Content)
+    (hash open=this.open close=this.close)
+  }}
 </BasicDropdown>
