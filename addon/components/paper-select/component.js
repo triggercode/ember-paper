@@ -179,7 +179,11 @@ class PaperSelect extends Component.extend(ValidationMixin, ChildMixin) {
         + centeredRect.paddingRight}px`;
     }
 
+    // reset the transform before getting the rect as the scale leads to an incorrect calculation otherwise
+    const transformStyle = containerNode.style.transform;
+    containerNode.style.transform = "none";
     let containerRect = containerNode.getBoundingClientRect();
+    containerNode.style.transform = transformStyle;
 
     let dropdownTop = clamp(bounds.top, top, bounds.bottom - containerRect.height);
     let dropdownLeft = clamp(bounds.left, left, bounds.right - containerRect.width);
